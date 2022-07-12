@@ -45,9 +45,19 @@ The scatterplot looks as if the points are going uphill to the right. My suspici
 ### Numerical results
 
 
+```{r}
+cor(SIMS~ARM,data=data)
+```
+The correlation we have found is 0.69, which is a positive correlation.
+
 
 
 ### Inferential  (Build model.1)
+
+
+
+
+
 
 #### Predict at target point
 
