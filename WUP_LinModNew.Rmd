@@ -1,7 +1,7 @@
 ---
 title: "linear model from Web"
-author: "Your Name"
-date: "Put semester and year"
+author: "kimberly Lemus Munoz"
+date: "summer 2022"
 output:
    html_document:
          toc: true
@@ -35,7 +35,16 @@ data <- read.csv(file="https://onlinestatbook.com/case_studies_rvls/physical_str
 
 ### scatterplot
 
+```{r}
+plot(SIMS~ARM,data=data)
+```
+
+The scatterplot looks as if the points are going uphill to the right. My suspicion is that this plot is a positive correlation due to the fact that the scatterplot is going uphill to the right.
+
+
 ### Numerical results
+
+
 
 
 ### Inferential  (Build model.1)
