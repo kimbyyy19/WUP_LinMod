@@ -136,6 +136,7 @@ basicNN + geom_point() + geom_smooth(method=lm)
 ```
 
 
+Here is the result of the scatterplot and our best fit line for our GRIP and SIMS data. If we use our prediction value, it matches x-value = 0.94 for GRIP.
 
 
 
