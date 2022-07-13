@@ -68,6 +68,29 @@ The fit equation is SIMS=0.054563*ARM - 4.095160
 
 #### Predict at target point
 
+SIMS=0.054563*88 - 4.095160
+
+```{r}
+0.054563*88 - 4.095160
+```
+
+When we plugged in 88 for arm in our best fit equation, we got 0.706, and that will be our prediction.
+
+```{r}
+new <- data.frame(ARM = 88,GRIP = 94)
+```
+
+```{r}
+predict(model.1,new)
+```
+
+Using the predict function, it also gives us the same result, 0.706384.
+
+
+
+
+
+
 
 #### scatterplot with model fit
   
