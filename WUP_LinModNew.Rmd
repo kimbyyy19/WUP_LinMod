@@ -156,6 +156,14 @@ We have a positive correlation between using both ARM and GRIP data. The correla
 
 ### Inferential  (Build model.2)
   
+```{r}
+model.3 <- lm(SIMS~ARM+GRIP,data=data)
+summary.lm(model.3)
+```  
+
+Fit equation is SIMS=-5.43 + GRIP * 0.02 + ARM * 0.04
+
+
 
 #### predict model.2 at target point
 
