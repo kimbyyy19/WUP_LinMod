@@ -117,7 +117,12 @@ plot(SIMS~GRIP,data=data)
 
 This scatterplot also shows that the points go uphill to the right. My prediction is that this is a positive correlation.
 
+```{r}
+model.2 <- lm(SIMS~GRIP,data=data)
+summary.lm(model.2)
+```  
 
+If we look at the Adjusted R-squared value of this GRIP data, it is smaller than the ARM data's Adjusted R-squared. In addition, the residual standard error is larger for this GRIP data than the ARM data. In conclusion based off these values, Model 1 is doing a better job at explaining our prediction and it's the better model. 
 
 
 
