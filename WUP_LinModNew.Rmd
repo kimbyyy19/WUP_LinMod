@@ -55,6 +55,13 @@ The correlation we have found is 0.69, which is a positive correlation.
 ### Inferential  (Build model.1)
 
 
+```{r}
+model.1 <- lm(SIMS~ARM,data=data)
+summary.lm(model.1)
+```
+
+The equation of a line is y=mx+b.
+The fit equation is SIMS=0.054563*ARM - 4.095160
 
 
 
