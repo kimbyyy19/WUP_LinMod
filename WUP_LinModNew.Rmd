@@ -143,6 +143,16 @@ Here is the result of the scatterplot and our best fit line for our GRIP and SIM
 
 ### Numerical results 
 
+```{r}
+cor(SIMS~ARM+GRIP,data=data)
+```
+We have a positive correlation between using both ARM and GRIP data. The correlation we got using both ARM and GRIP at the same time is higher than using either ARM or GRIP by themselves.
+
+
+
+
+
+
 
 ### Inferential  (Build model.2)
   
