@@ -111,6 +111,17 @@ Here is the best fit line for our data, and we can see that if we look for an x-
 
 ## Model 2 SIM~GRIP
 
+```{r}
+plot(SIMS~GRIP,data=data)
+```
+
+This scatterplot also shows that the points go uphill to the right. My prediction is that this is a positive correlation.
+
+
+
+
+
+
 ### Now add in scatterplot
 
 
