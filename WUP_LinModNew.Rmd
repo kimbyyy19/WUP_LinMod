@@ -130,6 +130,16 @@ If we look at the Adjusted R-squared value of this GRIP data, it is smaller than
 ### Now add in scatterplot
 
 
+```{r}
+basicNN <- ggplot(data,aes(y=SIMS,x=GRIP))
+basicNN + geom_point() + geom_smooth(method=lm)
+```
+
+
+
+
+
+
 ### Numerical results 
 
 
