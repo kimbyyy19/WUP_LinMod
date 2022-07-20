@@ -188,6 +188,9 @@ lm(formula= SIMS= -5.433971 + 0.037311 * ARM + 0.024478 *GRIP, data =data)
 predict(model.3 , Targetpoint, interval = "prediction")
 ```  
 
+This prediction shows that the the ARM + GRIP plane are lower amount is -2.13 while with the upper amount is 2.43.
+
+
 ## Comparing nested models ANOVA Test
 
 ### Model.1 vs Model.3
