@@ -36,8 +36,10 @@ data <- read.csv(file="https://onlinestatbook.com/case_studies_rvls/physical_str
 ### scatterplot
 
 ```{r}
-plot(SIMS~ARM,data=data)
+basicNN <- ggplot(data,aes(y=SIMS,x=ARM))
+basicNN + geom_point()
 ```
+
 
 The scatterplot looks as if the points are going uphill to the right. My suspicion is that this plot is a positive correlation due to the fact that the scatterplot is going uphill to the right.
 
@@ -48,7 +50,8 @@ The scatterplot looks as if the points are going uphill to the right. My suspici
 ```{r}
 cor(SIMS~ARM,data=data)
 ```
-The correlation we have found is 0.69, which is a positive correlation.
+The value above provides the specific correlation coefficient on the relationship between SIMS and ARM. The value 0.686 is quite decent in showing the positive linear relationship between SIMS and ARM. 
+
 
 
 
@@ -63,28 +66,23 @@ summary.lm(model.1)
 The equation of a line is y=mx+b.
 When we  fit the equation of the line equation is SIMS= -4.095160 + 0.054563*ARM.
 
-
+The model above shows the linear model of the relationship between SIMS and ARM. The most important information that can be taken from the model are the residual standard error and the adjusted R-squared value. A low residual standard error value of 1.226 means that the values do not deviate largely from the predicted value. Moreover, based on the value of the adjusted R-squared, we're reducing the error from the mean model by 46.6 %. 
 
 
 #### Predict at target point
-
-SIMS=0.054563*88 - 4.095160
-
 ```{r}
-0.054563*88 - 4.095160
-```
-
-When we plugged in 88 for arm in our best fit equation, we got 0.706, and that will be our prediction.
-
-```{r}
-pdata <- data.frame(ARM = 88,GRIP = 94)
+Targetpoint <- data.frame(ARM= 88, GRIP = 94)
 ```
 
 ```{r}
-predict(model.1,pdata)
+predict(model.1 , Targetpoint, interval = "prediction")
 ```
 
-Using the predict function, it also gives us the same result, 0.706384.
+This predicted the value we would get from model 1 if the target point for ARM is 88 and Grip is 94. But given that this model only makes use of ARM, it disregards the targetpoint value for GRIP. 
+
+
+
+
 
 
 
@@ -94,38 +92,22 @@ Using the predict function, it also gives us the same result, 0.706384.
 
 #### scatterplot with model fit
  
- 
- 
 ```{r}
-basicNN <- ggplot(data,aes(y=SIMS,x=ARM))
-basicNN + geom_point() + geom_smooth(method=lm)
-basicNN + geom_point()
+basicNN + geom_point() + geom_lm()
 ```
 
-Here is the best fit line for our data, and we can see that if we look for an x-value of 88 for ARM, the y-value is about 0.7 as predicted.
 
-  
+
+The scatter plot above now includes the prediction line that was determined previously. It further establishes that the relationship creates a normal distribution wherein the 95% of all the point is within two residual values from the line of best fit.  
+ 
+
+
 
 
 
 
 
 ## Model 2 SIM~GRIP
-
-```{r}
-plot(SIMS~GRIP,data=data)
-```
-
-This scatterplot also shows that the points go uphill to the right. My prediction is that this is a positive correlation.
-
-```{r}
-model.2 <- lm(SIMS~GRIP,data=data)
-summary.lm(model.2)
-```  
-
-If we look at the Adjusted R-squared value of this GRIP data, it is smaller than the ARM data's Adjusted R-squared. In addition, the residual standard error is larger for this GRIP data than the ARM data. In conclusion based off these values, Model 1 is doing a better job at explaining our prediction and it's the better model. 
-
-
 
 
 ### Now add in scatterplot
@@ -145,10 +127,9 @@ Here is the result of the scatterplot and our best fit line for our GRIP and SIM
 ### Numerical results 
 
 ```{r}
-cor(SIMS~ARM+GRIP,data=data)
+cor(SIMS~GRIP,data=data)
 ```
-We have a positive correlation between using both ARM and GRIP data. The correlation we got using both ARM and GRIP at the same time is higher than using either ARM or GRIP by themselves.
-
+The value above provides the specific correlation coefficient on the relationship between SIMS and GRIP. Although a value of 0.640 is quite decent in showing the positive linear relationship between SIMS and GRIP, it is lower than that of the first model. Therefore, it points toward the idea that arm strength is a better variable in predicting a worker's performance in the simulations. 
 
 
 
@@ -158,39 +139,44 @@ We have a positive correlation between using both ARM and GRIP data. The correla
 ### Inferential  (Build model.2)
   
 ```{r}
-model.3 <- lm(SIMS~ARM+GRIP,data=data)
-summary.lm(model.3)
+model.2 <- lm(SIMS~ARM+GRIP,data=data)
+summary.lm(model.2)
 ```  
 
 Fit equation is SIMS=-5.43 + GRIP * 0.02 + ARM * 0.04
 
-Our residual standard error is 1.144 which is smaller than our other models. Also our multiple R-squared is bigger, which makes this a better fit model.
-
+Above is the linear model of the relationship between SIMS and GRIP, and it also shows the standard residual error value and the adjusted R-squared. Comparing these two values from the those of the first model, we can expect that the standard deviation curve is wider on this model compared to the first one. Also, the adjusted R-squared value on this model means that we're able to reduce the error from the mean model by 40.53% which is lower than that of the first model. Lastly, more of the error is explained by the first model compared to the second model, based on the residual standard error value.
 
 #### predict model.2 at target point
 
 ```{r}
-predict(model.3,new, interval = "prediction")
+predict(model.2 , Targetpoint, interval = "prediction")
 ```
-
-
-
-
-
-
 
 
 #### now add the model fit to our plot for model.2
   
-
+```{r}
+basicNN_GRIP + geom_point() + geom_lm()
+```
+The scatter plot above combined the original data and the predicted values for SIMS~GRIP. Given all the information previously determined, this model, specifically grip strength, is not as reliable as arm strength in predicting a worker's performance in the simulations.
 
 ## Model 3 SIM~ARM+GRIP
 
-### Numerical results (cor)
 
-`
+### Numerical results (cor)
+```{r}
+cor(SIMS~ARM+GRIP,data=data)
+```
+The value of the correlation coefficient of the third model is higher than those of the previous two. This indicates that this model may be better than the first two models, but further tests can be done to confirm this. 
+
   
 ### Inferential  (Build 2-dimentional model.3)
+
+```{r}
+model.3 <- lm(SIMS~ARM+GRIP,data=data)
+summary.lm(model.3)
+```
 
 #### predict model.3 at target point
   
