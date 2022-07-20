@@ -71,12 +71,10 @@ The model above shows the linear model of the relationship between SIMS and ARM.
 
 #### Predict at target point
 ```{r}
-Targetpoint <- data.frame(ARM= 88, GRIP = 94)
+tgp=data.frame(ARM=88, GRIP=94)
+predict.lm(model.1, tgp, interval = "prediction")
 ```
 
-```{r}
-predict(model.1 , Targetpoint, interval = "prediction")
-```
 
 This predicted the value we would get from model 1 if the target point for ARM is 88 and Grip is 94. But given that this model only makes use of ARM, it disregards the targetpoint value for GRIP. 
 
@@ -134,7 +132,7 @@ The value above provides the specific correlation coefficient on the relationshi
 ### Inferential  (Build model.2)
   
 ```{r}
-model.2 <- lm(SIMS~ARM+GRIP,data=data)
+model.2 <- lm(SIMS~GRIP,data=data)
 summary.lm(model.2)
 ```  
 
@@ -145,7 +143,7 @@ Above is the linear model of the relationship between SIMS and GRIP, and it also
 #### predict model.2 at target point
 
 ```{r}
-predict(model.2 , Targetpoint, interval = "prediction")
+predict.lm(model.2, tgp, interval = "prediction")
 ```
 
 
@@ -185,8 +183,8 @@ lm(formula= SIMS= -5.433971 + 0.037311 * ARM + 0.024478 *GRIP, data =data)
 #### predict model.3 at target point
 
 ```{r}
-predict(model.3 , Targetpoint, interval = "prediction")
-```  
+predict.lm(model.3, tgp, interval = "prediction")
+```
 
 This prediction shows that the the ARM + GRIP plane are lower amount is -2.13 while with the upper amount is 2.43.
 
@@ -202,12 +200,11 @@ The anova test above shows that model 1 has a residual standard error of 217.88 
 
 
 
-
-
-### Model.2 vs Model.3
 ```{r}
 anova(model.2, model.3)
 ```
+
+
 
 The anova test above shows that model 2 has a residual standard error of 243.07 while model 3 has 188.43. This indicates that model 3 reduced the residual standard error of model 2 by 54.639, and according to the p-value, this difference is statistically significant. Therefore, we can confirm that model 3 is better than model 2. 
 
@@ -219,5 +216,3 @@ anova(model.2, model.1)
 ```
 
 The anova test above base the order of models depending on which models got inputted first on the code. As a result, number 1 is actually model 2 while number 2 is actually model 1. This is done so that the difference in RSS would be positive number. Meanwhile, we can infer from the anova test above that whichever model has a lower RSS value would be the better model. In this case, number 2, which is actually model 1, is better than model 2. 
-
-
